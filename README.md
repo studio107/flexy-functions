@@ -60,3 +60,25 @@ $map: (foo: 1, bar: 2);
 @include assert-equal(flexy-to-int("-12.5"), -12.5);
 @include assert-equal(flexy-to-int("12.5"), 12.5);
 ```
+
+# flexy-media-get
+
+```scss
+@include assert-equal(flexy-media-get((min-width: 100px, max-width: 101px)), '(max-width: 101px) and (min-width: 100px)');
+```
+
+# flexy-media
+
+```scss
+@include flexy-media((min-width: 100px), 'only print') {
+  font-size: 2rem;
+}
+```
+
+result:
+
+```css
+@media only print and (min-width: 100px) {
+  font-size: 2rem;
+}
+```

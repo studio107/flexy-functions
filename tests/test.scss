@@ -64,6 +64,30 @@
     @include assert-equal(pow(4, 2), 16);
   }
 
+  @include test('flexy-media-get') {
+    @import "../src/func/media";
+
+    @include assert-equal(flexy-media-get((min-width: 100px, max-width: 101px)), '(max-width: 101px) and (min-width: 100px)');
+  }
+
+  @include test('flexy-media') {
+    @import "../src/func/media";
+
+    @include assert {
+      @include output {
+        @include flexy-media((min-width: 100px)) {
+          font-size: 2rem;
+        }
+      }
+
+      @include expect {
+        @media only screen and (min-width: 100px) {
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+
   @include test('pow') {
     @import "../src/func/pow";
 
